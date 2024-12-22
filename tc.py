@@ -2,6 +2,9 @@
 import json
 import sys,os
 
+homepath = os.path.dirname(os.path.realpath(__file__))
+filepath = homepath+'/liststorage.json'
+
 try:
     s = sys.argv[1]
 except:
@@ -32,12 +35,12 @@ def writetofile(data):
     try:
         with open('temp.json','w') as file:
             json.dump(data,file)
-            os.replace('temp.json','liststorage.json')
+            os.replace('temp.json', filepath)
     except:
         print("error while writing to JSON!")
 
 try:
-    with open('liststorage.json','r') as jsfile:
+    with open(filepath,'r') as jsfile:
         jsfile.seek(0)
         data = json.loads(jsfile.read())
         todo, in_progress, done = data["todo"], data["in_progress"],data["done"]
@@ -46,11 +49,17 @@ try:
         if s == "list":
             try:
                 if sys.argv[2]=="todo":
-                    for index, item in enumerate(todo):
-                        print( index+1,".",item)
+                    if len(todo)== 0:
+                        print("Nothing in todo! Cheer up and add tasks✨")
+                    else:
+                        for index, item in enumerate(todo):
+                            print( index+1,".",item)
                 elif sys.argv[2][:2] == "in":
-                    for index, item in enumerate(in_progress):
-                        print(index+1,".",item)
+                    if len(in_progress)==0:
+                        print("No work in progress!")
+                    else:  
+                        for index, item in enumerate(in_progress):
+                            print(index+1,".",item)
                 elif sys.argv[2] == "done":
                     for index, item in enumerate(done):
                         print(index+1,".", item)
