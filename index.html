@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tasks CLI - Command-line Todo List Application</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* General body and page styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f1e1; /* Sepia background */
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container {
+    max-width: 960px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  header {
+    margin-bottom: 2rem;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    margin-top: 1.5rem;
+  }
+  
+  h3, h4 {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+  
+  ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  
+  pre {
+    padding: 0.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    color: #333;
+  }
+  
+  footer {
+    margin-top: 3rem;
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .container {
+      width: 95%;
+      padding: 1.5rem;
+    }
+  }
+  
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Tasks CLI</h1>
+      <p>A simple command-line todo list application written in Python that helps you manage tasks across different states: todo, in progress, and done.</p>
+    </header>
+
+    <section id="features">
+      <h2>Features</h2>
+      <ul>
+        <li>Manage tasks in three different lists: Todo, In Progress, and Done</li>
+        <li>Add new tasks</li>
+        <li>Update existing tasks</li>
+        <li>Delete tasks</li>
+        <li>Move tasks between lists</li>
+        <li>Persistent storage using JSON</li>
+      </ul>
+    </section>
+
+    <section id="installation">
+      <h2>Installation</h2>
+      <h3>Linux/MacOS</h3>
+      <ol>
+        <li>Clone this repository:
+          <pre><code>git clone &lt;repository-url&gt;</code></pre>
+          <pre><code>cd tasks-cli</code></pre>
+        </li>
+        <li>Make the Python script executable:
+          <pre><code>chmod +x tc.py</code></pre>
+        </li>
+        <li>Create symbolic link in /usr/local/:
+          <pre><code>sudo ln -sf "$(pwd)/tc.py" /usr/local/bin/tc</code></pre>
+        </li>
+      </ol>
+      <p>After installation, you can run the program from anywhere using the <code>tc</code> command.</p>
+    </section>
+
+    <section id="usage">
+      <h2>Usage</h2>
+      <p>The command syntax is: <code>tc &lt;command&gt; [options]</code></p>
+
+      <h3>Available Commands</h3>
+      <h4>View Tasks</h4>
+      <pre><code>tc list todo         # List all todo tasks</code></pre>
+      <pre><code>tc list in_progress  # List all in-progress tasks</code></pre>
+      <pre><code>tc list done        # List all completed tasks</code></pre>
+
+      <h4>Add Tasks</h4>
+      <pre><code>tc add 'task description'  # Add a new task to todo list</code></pre>
+
+      <h4>Update Tasks</h4>
+      <pre><code>tc update todo 1 'updated task'      # Update task #1 in todo list</code></pre>
+      <pre><code>tc update in_progress 1 'new text'   # Update task #1 in in-progress list</code></pre>
+      <pre><code>tc update done 1 'completed task'    # Update task #1 in done list</code></pre>
+
+      <h4>Delete Tasks</h4>
+      <pre><code>tc delete 1              # Delete task #1 from todo list</code></pre>
+      <pre><code>tc delete todo 1         # Delete task #1 from todo list</code></pre>
+      <pre><code>tc delete in_progress 1  # Delete task #1 from in-progress list</code></pre>
+      <pre><code>tc delete done 1         # Delete task #1 from done list</code></pre>
+
+      <h4>Move Tasks Between Lists</h4>
+      <pre><code>tc mark-inp 1    # Move task #1 from todo to in-progress</code></pre>
+      <pre><code>tc mark-done 1   # Move task #1 from todo to done</code></pre>
+      <pre><code>tc finish 1      # Move task #1 from in-progress to done</code></pre>
+
+      <h4>Help</h4>
+      <pre><code>tc help  # Display help information</code></pre>
+    </section>
+
+    <section id="data-storage">
+      <h2>Data Storage</h2>
+      <p>The application stores all tasks in a file called <code>liststorage.json</code> in the same directory as the script. You can backup this file to preserve your tasks.</p>
+    </section>
+
+    <section id="error-handling">
+      <h2>Error Handling</h2>
+      <p>The application includes error handling for:</p>
+      <ul>
+        <li>Invalid commands</li>
+        <li>Invalid task indices</li>
+        <li>File read/write errors</li>
+        <li>JSON parsing errors</li>
+        <li>Missing command arguments</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>Tasks CLI - Written by Aswin Pradeep C <br>
+      <a href="https://github.com/aswinpradeepc" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/aswinpradeepc=" target="_blank">LinkedIn</a>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>
