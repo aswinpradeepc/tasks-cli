@@ -1,6 +1,1 @@
-{
-    "todo": ["say hello"],
-    "in_progress": ["saying hello"],
-    "done": []
-
-}
+{"todo": [], "in_progress": [], "done": []}
